@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors/lecture" class="btn btn-info">Powrót do panelu zarządzania wykładami</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Aktualizacja danych ustalonego wykładu</b></h5>
+    </div>
+     <div class="row my-4 mx-auto col-5 text-center">
+        <div class="mb-3">
+            <h4>Kursant: {{item.kursant_imie}} {{item.kursant_nazwisko}} ({{item.kursant_login}})</h4>
+        </div>
+        <form action="/instructors/lecture/update/{{id}}" method="post">
+            <div class="mb-3">
+                <label for="temat" class="form-label">Temat:</label>
+                <input type="text" class="form-control" id="temat" name="temat" value="{{item.temat}}">
+            </div>
+            <div class="mb-3">
+                <label for="data" class="form-label">Termin:</label>
+                <input type="datetime-local" class="form-control" id="data" name="data" value="{{item.data}}">
+            </div>
+            <div class="mb-3">
+                <label for="iloscgodzin" class="form-label">Ilość godzin:</label>
+                <input type="number" class="form-control" id="iloscgodzin" name="iloscgodzin" value="{{item.iloscgodzin}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Zaktualizuj dane</button>
+        </form>
+    </div>
+</div>

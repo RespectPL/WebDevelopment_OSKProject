@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <h1><b>OPINIE O OŚRODKU SZKOLENIA JAZDY</b></h1>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <div class="col-5">
+            Twoja opinia: <br/><br/>
+            <form action="/opinions/add" method="post">
+                <div class="form-group mb-3">
+                    <textarea class="form-control" id="tresc" name="tresc"></textarea>
+                </div>
+            <input type="submit" value="Dodaj opinie" class="btn btn-primary">
+            </form>
+            <br />
+        </div> 
+        <div class="col-7">
+            Opinie kursantów: <br/><br/>
+            {{# each opcom }}
+                <figure class="text-center">
+                    <blockquote class="blockquote">
+                        <p>{{ this.tresc }}</p>
+                    </blockquote>
+                    <figcaption class="blockquote-footer">
+                        opinia od <cite title="Source Title">{{ this.user }}</cite>
+                    </figcaption>
+                </figure>
+            {{/each}}
+        </div>
+    </div>
+    
+</div>

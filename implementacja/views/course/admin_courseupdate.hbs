@@ -1,0 +1,24 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/courses/admin" class="btn btn-info">Powrót do panelu zarządzania kursami</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <h1><b>PANEL ADMINA</b></h1>
+        <h3><b>Zarządzanie prowadzonymi kursami</b></h3>
+        <h5><b>Aktualizacja danych kursu</b></h5>
+    </div>
+    <div class="row my-4 mx-auto col-5 text-center">
+        <form action="/courses/admin/update/{{id}}" method="post">
+            <div class="mb-3">
+                <label for="oznaczenie" class="form-label">Oznaczenie:</label>
+                <input type="text" class="form-control" id="oznaczenie" name="oznaczenie" value="{{ item.oznaczenie }}">
+            </div>
+            <div class="mb-3">
+                <label for="kategoria" class="form-label">Kategoria:</label>
+                <input type="text" class="form-control" id="kategoria" name="kategoria" value="{{ item.kategoria }}">
+            </div>
+            <button type="submit" class="btn btn-primary">Zaktualizuj dane</button>
+        </form>
+    </div>
+</div>

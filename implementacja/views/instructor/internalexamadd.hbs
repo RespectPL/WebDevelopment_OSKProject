@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors/internalexam" class="btn btn-info">Powrót do panelu zarządzania egzaminami wewnętrznymi</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Ustalanie egzaminu wewnętrznego</b></h5>
+    </div>
+     <div class="row my-4 mx-auto col-5 text-center">
+        <form action="/instructors/internalexam/add" method="post">
+            <label for="kursant" class="form-label">Kursant:</label>
+            <select name="kursant" class="form-select mb-3">
+                {{#each participants}}<option value="{{this.user}}"> {{this.imie}} {{this.nazwisko}}</option>{{/each}}
+            </select>
+             <label for="kurs" class="form-label">Kurs:</label>
+            <select name="kurs" class="form-select mb-3">
+                {{#each courses}}<option value="{{this.id}}"> {{this.oznaczenie}}/{{this.kategoria}}</option>{{/each}}
+            </select>
+            <div class="mb-3">
+                <label for="data" class="form-label">Termin:</label>
+                <input type="datetime-local" class="form-control" id="data" name="data">
+            </div>
+            <button type="submit" class="btn btn-primary">Zatwierdź</button>
+        </form>
+    </div>
+</div>

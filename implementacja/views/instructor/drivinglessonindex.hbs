@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors" class="btn btn-info">Powrót do głównego panelu instruktora</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Zarządzanie jazdami</b></h5>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <form action="/instructors/drivinglesson/add" method="get">
+            <button class="btn btn-primary" type="submit">Ustal jazdę</button>
+        </form>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <p align="left"><b>Lista prowadzonych jazd</b></p>
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Login kursanta</th>
+                    <th scope="col">Imię i nazwisko kursanta</th>
+                    <th scope="col">Kurs</th>
+                    <th scope="col">Pojazd</th>
+                    <th scope="col">Termin</th>
+                    <th scope="col">Ilość godzin</th>
+                    <th scope="col">Zaliczenie jazdy</th>
+                    <th scope="col">Aktualizacja danych</th>
+                    <th scope="col">Odwołanie jazdy</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{this.kursant_login}}</td>
+                    <td>{{this.kursant_imie}} {{this.kursant_nazwisko}}</td>
+                    <td>{{this.kurs_info}}</td>
+                    <td>{{this.pojazd_info}}</td>
+                    <td>{{this.data}}</td>
+                    <td>{{this.iloscgodzin}}</td>
+                    <td>{{#if this.attend}}<button class="btn btn-success btn-sm disabled">Zalicz</button>
+                        {{else}}<form action="/instructors/drivinglesson/complete" method="post" style="display: inline;">
+                        <button class="btn btn-success btn-sm" type="submit" name="id" id="{{this.id}}" value="{{this.id}}">Zalicz</button>
+                    </form>
+                        {{/if}}</td>
+                    <td><a href="/instructors/drivinglesson/update/{{this.id}}" class="btn btn-info btn-sm">Zmień dane</a></td>
+                    <td><form action="/instructors/drivinglesson/delete" method="post" style="display: inline;">
+                        <button class="btn btn-danger btn-sm" type="submit" name="id" id="{{this.id}}" value="{{this.id}}">Odwołaj</button>
+                    </form></td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+        </div>
+    </div>

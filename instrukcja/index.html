@@ -1,0 +1,947 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>System Obsługi Ośrodka Szkolenia Kierowców - instrukcja i opis projektu</title>
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Saira+Extra+Condensed:500,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Muli:400,400i,800,800i" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top" id="sideNav">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav">
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#introduction">Wprowadzenie</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#installation">Instalacja</a></li>
+                    <br />
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#registration">Rejestracja</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#login">Logowanie</a></li>
+
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#admin">Panel Admina</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#instructor">Panel Instruktora</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#participant">Panel Kursanta</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#opinion">Dodawanie opinii dotyczących OSK</a></li>
+                    <li class="nav-item"><a class="nav-link js-scroll-trigger" href="#non_login">Funkcjonalności dostępne bez logowania</a></li>
+                </ul>
+            </div>
+        </nav>
+        <!-- Page Content-->
+        <div class="container-fluid p-0">
+            <!-- Introduction-->
+            <section class="resume-section" id="introduction">
+                <div class="resume-section-content">
+                    <h1 class="mb-0">
+                        System Obsługi<br />
+                        <span class="text-primary">Ośrodka Szkolenia Kierowców</span>
+                    </h1>
+                    <div class="subheading mb-5">
+                        Instrukcja i opis projektu
+                    </div>
+                    <p class="lead mb-5">Link do projektu na GitLab: <a href="http://212.182.24.105/wojciech.nieweglowski/webdevelopmentwn2020/-/tree/master/projekt_zaliczenie" class="btn btn-primary" target="blank">GitLab</a></p>
+                    <br />
+                    <h4>AUTOR: Wojciech Niewęgłowski</h4>
+                    <h5>KIERUNEK: Informatyka, II stopień, UMCS</h5>
+                    <h5>ROK AKADEMICKI: 2020/2021</h5>        
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Installation-->
+            <section class="resume-section" id="installation">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Instalacja oprogramowania i uruchomienie systemu</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <ol>
+                            <li><a href="#installation1">Wymagane oprogramowanie</a></li>
+                            <li><a href="#installation2">Instalacja oprogramowania</a></li>
+                            <li><a href="#installation3">Import obowiązkowych danych</a></li>
+                            <li><a href="#installation4">Uruchomienie systemu</a></li>
+                        </ol>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="installation1"></a>
+                            <h3 class="mb-0">Wymagane oprogramowanie</h3>
+                            <p>Do uruchomienia Systemu potrzebne jest specjalne oprogramowanie. Pełna lista przedstawia się następująco:
+                                <ul>
+                                    <li>Przeglądarka internetowa</li>
+                                    <li>NodeJS wraz z modułami:
+                                        <ul>
+                                            <li>Express</li>
+                                            <li>Handlebars (HBS)</li>
+                                            <li>Body-parser</li>
+                                            <li>Mongoose</li>
+                                            <li>Express-Handlebars</li>
+                                            <li>JsonWebToken</li>
+                                            <li>BcryptJS</li>
+                                        </ul>
+                                    </li>
+                                    <li>Lokalna Baza Danych MongoDB + MongoDBCompass</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="installation2"></a>
+                            <h3 class="mb-0">Instalacja oprogramowania</h3>
+                            <p>Link do pobrania oprogramowania NodeJS: <a href="https://nodejs.org/en/download/" target="blank" class="btn btn-primary">NodeJS</a></p>
+                            <p>Link do pobrania oprogramowania bazy danych MongoDB: <a href="https://www.mongodb.com/try/download/community" target="blank" class="btn btn-primary">MongoDB</a></p>
+                            <p>Po pobraniu należy uruchomić instalator i przejść przez kolejne kroki instalacji. Po instalacji oprogramowania należy otworzyć terminal systemowy i za pomocą poniższych komend doinstalować potrzebne moduły:</p>
+                            <div class="subheading mb-3">Express</div>
+                            <code>npm install express</code>
+                            <br /><br />
+                            <div class="subheading mb-3">Mongoose</div>
+                            <code>npm install mongoose</code>
+                            <br /><br />
+                            <div class="subheading mb-3">Body-parser</div>
+                            <code>npm install body-parser</code>
+                            <br /><br />
+                            <div class="subheading mb-3">Handlebars (HBS)</div>
+                            <code>npm install hbs</code>
+                            <br /><br />
+                            <div class="subheading mb-3">Express-Handlebars</div>
+                            <code>npm install express-handlebars</code>
+                            <br /><br />
+                            <div class="subheading mb-3">JsonWebToken</div>
+                            <code>npm install jsonwebtoken</code>
+                            <br /><br />
+                            <div class="subheading mb-3">BcryptJS</div>
+                            <code>npm install bcryptjs</code>
+                            <br /><br />
+                            <p>Mając zainstalowane potrzebne oprogramowanie oraz moduły, należy jeszcze pobrać kod projektu z repozytorium na GitLabie (link do projektu w zakładce "Wprowadzenie".
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="installation3"></a>
+                            <h3 class="mb-0">Import obowiązkowych danych</h3>
+                            <p>
+                                Aby wszystkie funkcjonalności Systemu Obsługi Ośrodka Szkolenia Kierowców działały poprawnie (mianowicie Panel Admina)
+                                należy zaimportować do bazy danych dane Administratora z pliku.
+                            </p>
+                            <p>Plik umieszczony jest w plikach projektu (na GitLabie) w katalogu "dane".</p>
+                            <p>Mając gotowy plik danych wchodzimy w MongoDBCompass. Tworzymy bazę danych "osk", a w niej kolekcję "users":</p>
+                            <img src="img/mongo1.png" alt="MongoDB - tworzenie bazy i kolekcji">
+                            <br/> <br/>
+                            <p>Następnie przechodzimy do tej kolekcji i wybieramy Add Data -> Import File. Następnie w okienku, które się pojawi
+                                wybieramy typ pliku wejściowego (CSV), wskazujemy ścieżkę do pliku, resztę zostawiamy bez zmian. Przedstawia to poniższy rysunek:</p>
+                            <img src="img/mongo2.png" alt="MongoDB - wybór importu danych z pliku">
+                            <br/> <br/>
+                            <p>Następnie klikamy "Import" i dane konta Administratora zostaną zaimportowane do bazy.</p>
+                            <h5>Ważne!</h5>
+                            <p>Login i hasło do konta Administratora są następujące:<br />
+                                <b>Login:</b> Administrator<br/>
+                                <b>Hasło:</b> Administrator<br/>
+                            </p>
+                            <p>Pozostałe dane można sobie wygenerować za pomocą funkcjonalności Systemu i poszczególnych formularzy (np. rejestracji)
+                                w Systemie.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="installation4"></a>
+                            <h3 class="mb-0">Uruchomienie systemu</h3>
+                            <p>Aby uruchomić System Obsługi Ośrodka Szkolenia Kierowców, należy w terminalu systemowym przejść do głównego katalogu, w którym znajduje się pobrany projekt. Następnie przenieść się o poziomy niżej w hierarchii katalogów, tzn. przejść do katalogu "projekt_zaliczenie/implementacja". 
+                                Gdy już znajdujemy się w katalogu <i>[sciezka do katalogu glownego projektu]/projekt_zaliczenie/implementacja</i> uruchamiamy następującą komendę:
+                            </p>
+                            <code>node index.js</code>
+                            <br/><br/>
+                            <p>Następnie należy w przeglądarce wpisać podany adres lub kliknąć w link: <a href="http://localhost:8000" target="blank">localhost:8000</a></p>
+                            <p>Znajdziemy się na Stronie Głównej Systemu Obsługi Ośrodka Szkolenia Kierowców:</p>
+                            <img src="img/mainpage.png" alt="Strona Główna Systemu Obsługi OSK" width="100%">
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Registration-->
+            <section class="resume-section" id="registration">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Rejestracja</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <p>Aby zarejestrować się w Systemie Obsługi Ośrodka Szkolenia Kierowców należy na Stronie Głównej Systemu kliknąć w przycisk "Zarejestruj się". Zostaniemy przeniesieni na podstronę, na której wyświetli się formularz rejestracyjny:</p>
+                            <img src="img/registration1.png" alt="Formularz rejestracji" width="100%">
+                            <br/><br/>
+                            <p>Należy wypełnić ten formularz odpowiednimi i poprawnymi danymi.<br/>
+                                W polu "Login" należy wpisać swoją nazwę użytkownika, której będziemy używać do logowania w Systemie.<br/>
+                                W polu "Hasło" wpisujemy swoje hasło, które musi mieć co najmniej 8 znaków. Pole "Email" uzupełniamy adresem e-mail. <br/>
+                                Zależnie od tego, czy chcemy założyć konto Kursanta, czy Instruktora - wybieramy jedną z opcji w liście wyboru "Typ konta". <br/>
+                                Po uzupełnieniu danych klikamy "Zarejestruj się".
+                            </p>
+                            <p>Przykładowo wypełniony formularz rejestracji:</p>
+                            <img src="img/registration2.png" alt="Przykładowo wypełniony formularz rejestracji" width="100%">
+                            <br/><br/>
+                            <p>Po kliknięciu przycisku "Zarejestruj się" otrzymamy stosowną informację odnośnie powodzenia rejestracji.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Login-->
+            <section class="resume-section" id="login">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Logowanie</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <p>Aby zalogować się w Systemie Obsługi Ośrodka Szkolenia Kierowców należy na Stronie Głównej Systemu kliknąć w przycisk "Zaloguj się". Zostaniemy przeniesieni na podstronę, na której wyświetli się formularz logowania:</p>
+                            <img src="img/login1.png" alt="Formularz logowania" width="100%">
+                            <br/><br/>
+                            <p>Należy wypełnić powyższy formularz odpowiednimi i poprawnymi danymi.<br/>
+                                W polu "Login" należy wpisać swoją nazwę użytkownika, którą podaliśmy podczas rejestracji.<br/>
+                                W polu "Hasło" wpisujemy swoje hasło, które również podaliśmy przy rejestracji. <br/>
+                                Po uzupełnieniu danych klikamy "Zaloguj się".
+                            </p>
+                            <p>Przykładowo wypełniony formularz logowania:</p>
+                            <img src="img/login2.png" alt="Przykładowo wypełniony formularz logowania" width="100%">
+                            <br/><br/>
+                            <p>Po kliknięciu przycisku "Zaloguj się" zostaniemy przeniesieni na Stronę Główną Systemu,
+                                która będzie dostosowana do danego typu konta.</p>
+                            <p>Gdy zalogujemy się na konto Administratora Strona Główna będzie wyglądać następująco:</p>
+                            <img src="img/login3.png" alt="Strona główna po logowaniu na konto Administratora" width="100%">
+                            <br/><br/>
+                            <p>Natomiast, gdy zalogujemy się na konto Instruktora ujrzymy:</p>
+                            <img src="img/login4.png" alt="Strona główna po logowaniu na konto Instruktora" width="100%">
+                            <br/><br/>
+                            <p>Jeśli zalogujemy się na konto Kursanta, przywita nas następujący wygląd Strony Głównej:</p>
+                            <img src="img/login5.png" alt="Strona główna po logowaniu na konto Kursanta" width="100%">
+                            <br/><br/>
+                            <p>Jak widzimy są małe różnice, ale ważne. Zależnie od danego typu konta mamy dostęp do innego Panelu.</p>
+                            <p>Poszczególne Panele zostaną omówione w dalszej części Instrukcji.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Admin Panel-->
+            <section class="resume-section" id="admin">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Panel Admina</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <ol>
+                            <li><a href="#adminmain">Strona Główna Panelu Admina</a></li>
+                            <li><a href="#adminvehicles">Panel Admina: Zarządzanie pojazdami</a>
+                                <ol type="a">
+                                    <li><a href="#adminvehiclesadd">Dodawanie pojazdu</a></li>
+                                    <li><a href="#adminvehiclesupdate">Aktualizacja danych pojazdu</a></li>
+                                    <li><a href="#adminvehiclesdelete">Usuwanie pojazdu</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="#admincourses">Panel Admina: Zarządzanie kursami</a>
+                                <ol type="a">
+                                    <li><a href="#admincoursesadd">Dodawanie kursu</a></li>
+                                    <li><a href="#admincoursesupdate">Aktualizacja danych kursu</a></li>
+                                    <li><a href="#admincoursesdelete">Usuwanie kursu</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="#adminusers">Panel Admina: Zarządzanie użytkownikami</a></li>
+                        </ol>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminmain"></a>
+                            <h3 class="mb-0">Strona Główna Panelu Admina</h3>
+                            <p>Gdy zalogujemy się na konto Administratora i klikniemy w przycisk "Panel Admina" na Stronie Głównej Systemu 
+                                zostaniemy przeniesieni na Stronę Główną Panelu Admina, która przedstawia się następująco:</p>
+                            <img src="img/admin1.png" alt="Strona główna Panelu Admina" width="100%">
+                            <br/><br/>
+                            <p>Widzimy trzy opcje, które posiada Administrator:
+                                <ul>
+                                    <li><b>Pojazdy</b> - Zarządzanie pojazdami (dodawanie, aktualizacja, usuwanie)</li>
+                                    <li><b>Kursy</b> - Zarządzanie prowadzonymi kursami (dodawanie, aktualizacja, usuwanie)</li>
+                                    <li><b>Użytkownicy</b> - Zarządzanie prowadzonymi użytkownikami (usuwanie kont)</li>
+                                </ul>
+                            </p>
+                            <p>W dalszej części tego rozdziału opisane zostaną poszczególne panele zarządzania.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminvehicles"></a>
+                            <h3 class="mb-0">Panel Admina: Zarządzanie pojazdami</h3>
+                            <p>Kliknięcie przycisku "Pojazdy" na Stronie Głównej Panelu Admina przekieruje nas na podstronę Zarządzania Pojazdami:</p>
+                            <img src="img/admin2.png" alt="Panel Admina - Zarządzanie Pojazdami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Administrator ma możliwość dodania nowego pojazdu oraz aktualizacji danych i usuwania pojazdów już istniejących.<br />
+                            Omówienie każdej z funkcjonalności poniżej:</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminvehiclesadd"></a>
+                            <h4 class="mb-0">Dodawanie pojazdu</h4>
+                            <p>Aby dodać pojazd należy w Panelu Admina - Zarządzanie pojazdami kliknąć przycisk "Dodaj pojazd".
+                                Zostaniemy przeniesieni na podstronę z formularzem dodawania pojazdu do bazy:
+                            </p>
+                            <img src="img/admin3.png" alt="Panel Admina - Zarządzanie Pojazdami (Dodawanie pojazdu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>W polu "Nazwa" należy podać dokładne dane odnośnie marki i modelu samochodu.<br />
+                            W polu "Typ" wpisujemy typ samochodu, np. samochód osobowy.<br/>
+                            W polu "Numer rejestracyjny" umieszczamy numer rejestracyjny dodawanego pojazdu.<br />
+                            Po wypełnieniu formularza należy kliknąć przycisk "Dodaj".</p>
+                            <p>Formularz wypełniony przykładowymi danymi znajduje się poniżej:</p>
+                            <img src="img/admin4.png" alt="Panel Admina - Zarządzanie Pojazdami (Dodawanie pojazdu - formularz z przykładowymi danymi)" width="100%">
+                            <br/><br/>
+                            <p>Po kliknięciu przycisku "Dodaj" dostaniemy stosowną informację, czy pojazd został dodany.</p>
+                            <p>Jak widzimy na poniższym zrzucie ekranu, dodawanie pojazdu udało się, gdyż znajduje się on na liście:</p>
+                            <img src="img/admin4a.png" alt="Panel Admina - Zarządzanie Pojazdami (Dodawanie pojazdu - sukces)" width="100%">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminvehiclesupdate"></a>
+                            <h4 class="mb-0">Aktualizacja danych pojazdu</h4>
+                            <p>Aby zaktualizować dane dotyczące jednego z pojazdów w bazie należy w Panelu Admina - Zarządzanie pojazdami kliknąć przycisk "Update" przy danym pojeździe.
+                                Zostaniemy przeniesieni na podstronę z formularzem aktualizacji danych pojazdu:
+                            </p>
+                            <img src="img/admin5.png" alt="Panel Admina - Zarządzanie Pojazdami (Aktualizacja danych pojazdu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>Formularz został automatycznie wypełniony dotychczasowymi danymi. Wystarczy zmienić interesujące nas dane
+                                i kliknąć "Zaktualizuj dane".
+                            </p>
+                            <p>Po kliknięciu przycisku zostaniemy przekierowani do Panelu Admina - Zarządzanie Pojazdami i w liście pojazdów
+                                będą widoczne zaktualizowane dane pojazdu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminvehiclesdelete"></a>
+                            <h4 class="mb-0">Usuwanie pojazdu</h4>
+                            <p>Aby usunąć pojazd z bazy należy w Panelu Admina - Zarządzanie pojazdami kliknąć przycisk "Delete" przy danym pojeździe.
+                                Kliknięcie przycisku spowoduje usunięcie pojazdu z bazy. Zatem po kliknięciu tego przycisku nie zobaczymy już
+                                pojazdu na liście.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="admincourses"></a>
+                            <h3 class="mb-0">Panel Admina: Zarządzanie kursami</h3>
+                            <p>Kliknięcie przycisku "Kursy" na Stronie Głównej Panelu Admina przekieruje nas na podstronę Zarządzania kursami:</p>
+                            <img src="img/admin6.png" alt="Panel Admina - Zarządzanie Kursami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Administrator ma możliwość dodania nowego kursu oraz aktualizacji danych i usuwania kursów już istniejących.<br />
+                            Poniżej omówienie każdej funkcjonalności:</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="admincoursesadd"></a>
+                            <h4 class="mb-0">Dodawanie kursu</h4>
+                            <p>Aby dodać kurs należy w Panelu Admina - Zarządzanie kusami kliknąć przycisk "Dodaj kurs".
+                                Zostaniemy przeniesieni na podstronę z formularzem dodawania kursu do bazy:
+                            </p>
+                            <img src="img/admin7.png" alt="Panel Admina - Zarządzanie Kursami (Dodawanie kursu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>W polu "Oznacznie" należy wpisać oznaczenie kursu, np. C.<br />
+                            W polu "Kategoria" wpisujemy dokładny opis kategorii, np. "samochód osobowy > 3,5t (ciężarówka)".<br/>
+                            Po wypełnieniu formularza należy kliknąć przycisk "Dodaj".</p>
+                            <p>Formularz wypełniony przykładowymi danymi znajduje się poniżej:</p>
+                            <img src="img/admin8.png" alt="Panel Admina - Zarządzanie Kursami (Dodawanie kursu - formularz z przykładowymi danymi)" width="100%">
+                            <br/><br/>
+                            <p>Po kliknięciu przycisku "Dodaj" dostaniemy stosowną informację, czy kurs został dodany.</p>
+                            <p>Jak widzimy na poniższym zrzucie ekranu, dodawanie kursu udało się, gdyż znajduje się on na liście:</p>
+                            <img src="img/admin8a.png" alt="Panel Admina - Zarządzanie Kursami (Dodawanie kursu - sukces)" width="100%">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="admincoursesupdate"></a>
+                            <h4 class="mb-0">Aktualizacja danych kursu</h4>
+                            <p>Aby zaktualizować dane dotyczące jednego z prowadzonych kursów należy w Panelu Admina - Zarządzanie kursami kliknąć przycisk "Update" przy odpowiednim kursie.
+                                Zostaniemy przeniesieni na podstronę z formularzem aktualizacji danych kursu:
+                            </p>
+                            <img src="img/admin9.png" alt="Panel Admina - Zarządzanie Kursami (Aktualizacja danych kursu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>Formularz został automatycznie wypełniony dotychczasowymi danymi. Wystarczy zmienić interesujące nas dane
+                                i kliknąć "Zaktualizuj dane".
+                            </p>
+                            <p>Po kliknięciu przycisku zostaniemy przekierowani do Panelu Admina - Zarządzanie Kursami i w liście kursów
+                                będą widoczne zaktualizowane dane tego kursu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="admincoursesdelete"></a>
+                            <h4 class="mb-0">Usuwanie kursu</h4>
+                            <p>Aby usunąć kurs z bazy należy w Panelu Admina - Zarządzanie Kursami kliknąć przycisk "Delete" przy danym kursie.
+                                Kliknięcie przycisku spowoduje usunięcie kursu z bazy. Zatem po kliknięciu tego przycisku nie zobaczymy już
+                                pojazdu na liście w Panelu Admina - Zarządzanie Kursami.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="adminusers"></a>
+                            <h3 class="mb-0">Panel Admina: Zarządzanie użytkownikami</h3>
+                            <p>Kliknięcie przycisku "Użytkownicy" na Stronie Głównej Panelu Admina przekieruje nas na podstronę Zarządzania użytkownikami:</p>
+                            <img src="img/admin10.png" alt="Panel Admina - Zarządzanie Użytkownikami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Administrator ma możliwość usunięcia kont użytkowników.</p>
+                            <p>Administrator może usunąć konto poprzez kliknięcie przycisku "Delete" przy danych tego konta, który chce usunąć. 
+                            Jak widać, przycisk usunięcia konta przy koncie Administratora jest zablokowany, co jest logiczne. Gdyż konta Administratora 
+                            nie należy usuwać.</p>
+                            <p>Po kliknięciu przycisku "Delete" dane konto zostanie usunięte z bazy i nie będzie już widoczne na liście zarejestrowanych użytkowników.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Instructor Panel-->
+            <section class="resume-section" id="instructor">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Panel Instruktora</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <ol>
+                            <li><a href="#instructormain">Strona Główna Panelu Instruktora</a></li>
+                            <li><a href="#instructorpd">Panel Instruktora: Zarządzanie danymi osobowymi</a></li>
+                            <li><a href="#instructorpc">Panel Instruktora: Zarządzanie kursantami i kursami, na które są zapisani</a></li>
+                            <li><a href="#instructorlecture">Panel Instruktora: Zarządzanie wykładami</a>
+                                <ol type="a">
+                                    <li><a href="#instructorlectureadd">Ustalanie wykładu</a></li>
+                                    <li><a href="#instructorlectureupdate">Aktualizacja danych wykładu</a></li>
+                                    <li><a href="#instructorlecturedelete">Odwoływanie wykładu</a></li>
+                                    <li><a href="#instructorlecturecomplete">Zaliczanie wykładu</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="#instructordl">Panel Instruktora: Zarządzanie jazdami</a>
+                                <ol type="a">
+                                    <li><a href="#instructordladd">Ustalanie jazdy</a></li>
+                                    <li><a href="#instructordlupdate">Aktualizacja danych jazdy</a></li>
+                                    <li><a href="#instructordldelete">Odwoływanie jazdy</a></li>
+                                    <li><a href="#instructordlcomplete">Zaliczanie jazdy</a></li>
+                                </ol>
+                            </li>
+                            <li><a href="#instructorie">Panel Instruktora: Zarządzanie egzaminami wewnętrznymi</a>
+                                <ol type="a">
+                                    <li><a href="#instructorieadd">Ustalanie egzaminu wewnętrznego</a></li>
+                                    <li><a href="#instructorieupdate">Aktualizacja terminu egzaminu wewnętrznego</a></li>
+                                    <li><a href="#instructoriedelete">Odwoływanie egzaminu wewnętrznego</a></li>
+                                    <li><a href="#instructoriecomplete">Zaliczanie egzaminu wewnętrznego</a></li>
+                                </ol>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructormain"></a>
+                            <h3 class="mb-0">Strona Główna Panelu Instruktora</h3>
+                            <p>Gdy zalogujemy się na konto Instruktora i klikniemy w przycisk "Panel Instruktora" na Stronie Głównej Systemu 
+                                zostaniemy przeniesieni na Stronę Główną Panelu Instruktora. Jeśli wchodzimy w Panel Instruktora pierwszy raz po rejestracji
+                                otrzymamy komunikat mówiący o tym, by uzupełnić swoje dane osobowe. Dodatkowo wszystkie opcje do czasu uzupełnienia danych będą
+                                niedostępne. Uzupełnienie danych jest konieczne:</p>
+                            <img src="img/instructor1a.png" alt="Strona główna Panelu Instruktora - po rejestracji" width="100%">
+                            <br/><br/>
+                            <p>Klikamy więc w "<u>LINK</u>" przy komunikacie, by uzupełnić swoje dane osobowe. Zostaniemy przeniesieni na podstronę z następującym formularzem:</p>
+                            <img src="img/instructor2.png" alt="Panel Instruktora - uzupełnianie danych osobowych" width="100%">
+                            <br/><br/>
+                            <p>W polu "Imię" wpisujemy imię instruktora, podobnie w polu "Nazwisko" wpisujemy jego nazwisko.<br/>
+                                W polu "Telefon" należy wpisać numer telefonu do instruktora.<br/>
+                                Po uzupełnieniu formularza wystarczy kliknąć "Zatwierdź".
+                            </p>
+                            <p>
+                                 Po kliknięciu "Zatwierdź" zostaniemy przekierowani na Stonę Główną Panelu Instruktora, w której już będą dostępne wszystkie opcje.
+                                 Od teraz za każdym razem, gdy będziemy logować się na dane konto Instruktora z uzupełnionymi danymi i wejdziemy w Panel Instruktora,
+                                 pojawi się następująca Strona Główna tego Panelu:
+                            </p>
+                            <img src="img/instructor1b.png" alt="Strona główna Panelu Instruktora - ogólna" width="100%">
+                            <br/><br/>
+                            <p>Widzimy pięć opcji, które posiada Instruktor:
+                                <ul>
+                                    <li><b>Dane osobowe</b> - Zarządzanie swoimi danymi osobowymi</li>
+                                    <li><b>Kursanci zarejestrowani na kursy</b> - Zarządzanie kursantami zapisanymi na kursy w ośrodku</li>
+                                    <li><b>Wykłady</b> - Zarządzanie wykładami</li>
+                                    <li><b>Jazdy</b> - Zarządzanie jazdami</li>
+                                    <li><b>Egzaminy wewnętrzne</b> - Zarządzanie egzaminami wewnętrznymi</li>
+                                </ul>
+                            </p>
+                            <p>W dalszej części tego rozdziału opisane zostaną poszczególne funkcjonalności.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorpd"></a>
+                            <h3 class="mb-0">Panel Instruktora: Zarządzanie danymi osobowymi</h3>
+                            <p>Kliknięcie przycisku "Dane osobowe" na Stronie Głównej Panelu Instruktora przekieruje nas na podstronę Zarządzania Danymi Osobowymi:</p>
+                            <img src="img/instructor3.png" alt="Panel Instruktora - Zarządzanie Danymi Osobowymi (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Instruktor ma możliwość podglądu swoich danych osobowych, a także aktualizacji.</p>
+                            <p>Jeśli potrzebujemy zmiany danych osobowych klikamy "Zaktualizuj dane". Zostaniemy przeniesieni na podstronę 
+                                z odpowiednim formularzem, który będzie automatycznie uzupełniony dotychczasowymi danymi:
+                            </p>
+                            <img src="img/instructor4.png" alt="Panel Instruktora - Zarządzanie Danymi Osobowymi (Aktualizacja danych)" width="100%">
+                            <br/><br/>
+                            <p>Teraz wystarczy zmienić dane, które nas interesują i zatwierdzić przyciskiem "Zatwierdź dane"</p>
+                            <p>Po kliknięciu tego przycisku zostaniemy z powrotem przeniesieni do Panelu Zarządzania Danymi Osobowymi,
+                                gdzie w podglądzie danych osobowych będą widoczne dokonane zmiany.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorpc"></a>
+                            <h3 class="mb-0">Panel Instruktora: Zarządzanie kursantami i kursami, na które są zapisani</h3>
+                            <p>Kliknięcie przycisku "Kursanci zarejestrowani na kursy" na Stronie Głównej Panelu Instruktora przekieruje nas na podstronę Zarządzania Kursantami i Kursami, na które są zapisani:</p>
+                            <img src="img/instructor5.png" alt="Panel Instruktora - Zarządzanie Kursantami i Kursami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Instruktor w Panelu Zarządzania Kursantami i Kursami ma możliwość podglądu informacji dotyczących tego, jacy kursanci na jakie kursy się zarejestrowali.
+                                Dodatkowo Instruktor widzi stan płatności (czy kursant dokonał płatności za kurs, czy jeszcze nie) oraz stan kursu (czy jest w trakcie, czy już zakończony).
+                            </p>
+                            <p>
+                                Instruktor może w tym Panelu zakończyć dany kurs danemu kursantowi. Wystarczy kliknąć przycisk "End course" przy odpowiednim kursie.
+                                Po kliknięciu pojawi się informacja "Zakończony" w kolumnie "Stan kursu" przy danym kursie i przycisk "End course" będzie już zablokowany.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlecture"></a>
+                            <h3 class="mb-0">Panel Instruktora: Zarządzanie wykładami</h3>
+                            <p>Kliknięcie przycisku "Wykłady" na Stronie Głównej Panelu Instruktora przekieruje nas na podstronę Zarządzania Wykładami:</p>
+                            <img src="img/instructor6.png" alt="Panel Instruktora - Zarządzanie Wykładami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Instruktor ma możliwość ustalenia nowego wykładu oraz aktualizacji danych i odwoływania wykładów już istniejących.<br />
+                            Omówienie każdej z funkcjonalności poniżej:</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlectureadd"></a>
+                            <h4 class="mb-0">Ustalanie wykładu</h4>
+                            <p>Aby ustalić wykład należy w Panelu Instruktora - Zarządzanie wykładami kliknąć przycisk "Ustal wykład".
+                                Zostaniemy przeniesieni na podstronę z formularzem dodawania wykładu do bazy:
+                            </p>
+                            <img src="img/instructor7.png" alt="Panel Instruktora - Zarządzanie Wykładami (Ustalanie wykładu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>W polu "Kursant" należy z listy rozwijanej wybrać kursanta, dla którego ustalony ma być wykład.<br />
+                            W polu "Temat" wpisujemy temat danego wykładu.<br/>
+                            W polu "Termin" wybieramy termin wykładu w postaci dokładnej daty i godziny.<br />
+                            W polu "Ilość godzin" wypisujemy liczbę odpowiadającą ilości godzin danego wykładu.<br />
+                            Po wypełnieniu formularza należy kliknąć przycisk "Zatwierdź".</p>
+                            <p>Po kliknięciu przycisku dostaniemy stosowną informację, czy wykład został dodany do bazy.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlectureupdate"></a>
+                            <h4 class="mb-0">Aktualizacja danych wykładu</h4>
+                            <p>Aby zaktualizować dane dotyczące jednego z wykładów należy w Panelu Instruktora - Zarządzanie wykładami kliknąć przycisk "Zmień dane" przy danym wykładzie.
+                                Zostaniemy przeniesieni na podstronę z formularzem aktualizacji danego wykładu:
+                            </p>
+                            <img src="img/instructor8.png" alt="Panel Instruktora - Zarządzanie Wykładami (Aktualizacja danych wykładu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>Formularz został automatycznie wypełniony dotychczasowymi danymi (kursant, temat i ilość godzin). Wystarczy zmienić interesujące nas dane, uzupełnić termin
+                                i kliknąć "Zaktualizuj dane".
+                            </p>
+                            <p>Po kliknięciu przycisku zostaniemy przekierowani do Panelu Instruktora - Zarządzanie Wykładami i w liście ustalonych wykładów
+                                będą widoczne zaktualizowane dane wykładu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlecturedelete"></a>
+                            <h4 class="mb-0">Odwoływanie wykładu</h4>
+                            <p>Aby odwołać dany wykład należy w Panelu Instruktora - Zarządzanie wykładami kliknąć przycisk "Odwołaj" przy danym wykładzie.
+                                Kliknięcie przycisku spowoduje usunięcie wykładu z bazy. Zatem po kliknięciu tego przycisku nie zobaczymy już
+                                tego wykładu na liście.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlecturecomplete"></a>
+                            <h4 class="mb-0">Zaliczanie wykładu</h4>
+                            <p>Aby zaliczyć dany wykład należy w Panelu Instruktora - Zarządzanie wykładami kliknąć przycisk "Zalicz" przy danym wykładzie.
+                                Kliknięcie przycisku spowoduje aktualizację pola "attend" danego wykładu w bazie na "true". Zatem po kliknięciu tego przycisku nie będzie możliwości ponownego kliknięcia
+                                tego przycisku (przycisk zostanie "wyłączony").
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructordl"></a>
+                            <h3 class="mb-0">Panel Admina: Zarządzanie jazdami</h3>
+                            <p>Kliknięcie przycisku "Jazdy" na Stronie Głównej Panelu Instruktora przekieruje nas na podstronę Zarządzania Jazdami:</p>
+                            <img src="img/instructor9.png" alt="Panel Instruktora - Zarządzanie Jazdami (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Instruktor ma możliwość ustalenia jazdy oraz aktualizacji danych i odwoływania jazd już istniejących.<br />
+                            Omówienie każdej z funkcjonalności poniżej:</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructordladd"></a>
+                            <h4 class="mb-0">Ustalanie jazdy</h4>
+                            <p>Aby ustalić jazdę należy w Panelu Instruktora - Zarządzanie jazdami kliknąć przycisk "Ustal jazdę".
+                                Zostaniemy przeniesieni na podstronę z formularzem dodawania jazdy do bazy:
+                            </p>
+                            <img src="img/instructor10.png" alt="Panel Instruktora - Zarządzanie Jazdami (Ustalanie jazdy - formularz)" width="100%">
+                            <br/><br/>
+                            <p>W polu "Kursant" należy z listy rozwijanej wybrać kursanta, dla którego ustalona ma być jazda.<br />
+                            W polu "Kurs" należy z listy rozwijanej wybrać kategorię prawa jazdy, której dotyczy dana jazda.<br />
+                            W polu "Pojazd" należy z listy rozwijanej wybrać pojazd, którym kursant będzie jeździł podczas danej jazdy.<br />
+                            W polu "Termin" wybieramy termin jazdy w postaci dokładnej daty i godziny.<br />
+                            W polu "Ilość godzin" wypisujemy liczbę odpowiadającą ilości godzin danej jazdy.<br />
+                            Po wypełnieniu formularza należy kliknąć przycisk "Zatwierdź".</p>
+                            <p>Po kliknięciu przycisku "Zatwierdź" dostaniemy stosowną informację, czy jazda została dodana do bazy.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructordlupdate"></a>
+                            <h4 class="mb-0">Aktualizacja danych jazdy</h4>
+                            <p>Aby zaktualizować dane dotyczące jednej z jazd należy w Panelu Instruktora - Zarządzanie jazdami kliknąć przycisk "Zmień dane" przy danej jeździe.
+                                Zostaniemy przeniesieni na podstronę z formularzem aktualizacji danej jazdy:
+                            </p>
+                            <img src="img/instructor11.png" alt="Panel Instruktora - Zarządzanie Jazdami (Aktualizacja danych jazdy - formularz)" width="100%">
+                            <br/><br/>
+                            <p>Formularz został automatycznie wypełniony dotychczasowymi danymi (kursant, kurs i ilość godzin). Wystarczy zmienić interesujące nas dane, uzupełnić termin, ponownie wybrać pojazd z listy rozwijanej
+                                i kliknąć "Zaktualizuj dane".
+                            </p>
+                            <p>Po kliknięciu przycisku zostaniemy przekierowani do Panelu Instruktora - Zarządzanie Jazdami i w liście ustalonych jazd
+                                będą widoczne zaktualizowane dane jazdy.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructordldelete"></a>
+                            <h4 class="mb-0">Odwoływanie jazdy</h4>
+                            <p>Aby odwołać daną jazdę należy w Panelu Instruktora - Zarządzanie jazdami kliknąć przycisk "Odwołaj" przy danej jeździe.
+                                Kliknięcie przycisku spowoduje usunięcie jazdy z bazy. Zatem po kliknięciu tego przycisku nie zobaczymy już
+                                danej jazdy na liście.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructordlcomplete"></a>
+                            <h4 class="mb-0">Zaliczanie jazdy</h4>
+                            <p>Aby zaliczyć daną jazdę należy w Panelu Instruktora - Zarządzanie jazdami kliknąć przycisk "Zalicz" przy interesującej nas jeździe.
+                                Kliknięcie przycisku spowoduje aktualizację pola "attend" danej jazdy w bazie na "true". Zatem po kliknięciu tego przycisku nie będzie możliwości ponownego kliknięcia
+                                tego przycisku (przycisk zostanie "wyłączony").
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorie"></a>
+                            <h3 class="mb-0">Panel Admina: Zarządzanie egzaminami wewnętrznymi</h3>
+                            <p>Kliknięcie przycisku "Egzaminy wewnętrzne" na Stronie Głównej Panelu Instruktora przekieruje nas na podstronę Zarządzania Egzaminami Wewnętrznymi:</p>
+                            <img src="img/instructor12.png" alt="Panel Instruktora - Zarządzanie Egzaminami Wewnętrznymi (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Instruktor ma możliwość ustalenia egzaminu wewnętrznego oraz aktualizacji danych i odwoływania egzmainów już istniejących.<br />
+                            Omówienie każdej z funkcjonalności poniżej:</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorieadd"></a>
+                            <h4 class="mb-0">Ustalanie egzaminu wewnętrznego</h4>
+                            <p>Aby ustalić egzamin wewnętrzny należy w Panelu Instruktora - Zarządzanie egzaminami wewnętrznymi kliknąć przycisk "Ustal egzamin wewnętrzny".
+                                Zostaniemy przeniesieni na podstronę z formularzem dodawania egzaminu wewnętrznego do bazy:
+                            </p>
+                            <img src="img/instructor13.png" alt="Panel Instruktora - Zarządzanie Egzaminami Wewnętrznymi (Ustalanie egzaminu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>W polu "Kursant" należy z listy rozwijanej wybrać kursanta, dla którego ustalony ma być egzamin.<br />
+                            W polu "Kurs" należy z listy rozwijanej wybrać kategorię prawa jazdy, której dotyczy dany egzamin.<br />
+                            W polu "Termin" wybieramy termin egzaminu wewnętrznego w postaci dokładnej daty i godziny.<br />
+                            Po wypełnieniu formularza należy kliknąć przycisk "Zatwierdź".</p>
+                            <p>Po kliknięciu przycisku "Zatwierdź" dostaniemy stosowną informację, czy egzamin wewnętrzny został dodany do bazy.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorieupdate"></a>
+                            <h4 class="mb-0">Aktualizacja terminu egzaminu wewnętrznego</h4>
+                            <p>Aby zaktualizować termin jednego z egzaminów wewnętrznych należy w Panelu Instruktora - Zarządzanie egzaminami wewnętrznego kliknąć przycisk "Zmień dane" przy danym egzaminie.
+                                Zostaniemy przeniesieni na podstronę z formularzem aktualizacji terminu danego egzaminu:
+                            </p>
+                            <img src="img/instructor14.png" alt="Panel Instruktora - Zarządzanie Egzaminami Wewnętrznymi (Aktualizacja danych egzaminu - formularz)" width="100%">
+                            <br/><br/>
+                            <p>Formularz został automatycznie wypełniony dotychczasowymi danymi (kursant, kurs). Wystarczy uzupełnić termin
+                                i kliknąć "Zaktualizuj dane".
+                            </p>
+                            <p>Po kliknięciu przycisku zostaniemy przekierowani do Panelu Instruktora - Zarządzanie Egzaminami Wewnętrznymi i w liście ustalonych egzaminów
+                                będzie widoczny zaktualizowany termin danego egzaminu.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructoriedelete"></a>
+                            <h4 class="mb-0">Odwoływanie egzaminu wewnętrznego</h4>
+                            <p>Aby odwołać dany egzamin wewnętrzny należy w Panelu Instruktora - Zarządzanie egzaminami wewnętrznymi kliknąć przycisk "Odwołaj" przy danym egzaminie.
+                                Kliknięcie przycisku spowoduje usunięcie egzaminu z bazy. Zatem po kliknięciu tego przycisku nie zobaczymy już
+                                danego egzaminu na liście.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructoriecomplete"></a>
+                            <h4 class="mb-0">Zaliczanie egzaminu wewnętrznego</h4>
+                            <p>Aby zaliczyć dany egzamin należy w Panelu Instruktora - Zarządzanie egzaminami wewnętrznymi kliknąć przycisk "Zalicz" przy interesującym nas egzaminie.
+                                Kliknięcie przycisku spowoduje aktualizację pola "pass" danego egzaminu w bazie na "true". Zatem po kliknięciu tego przycisku nie będzie możliwości ponownego kliknięcia
+                                tego przycisku (przycisk zostanie "wyłączony").
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Participant Panel-->
+            <section class="resume-section" id="participant">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Panel Kursanta</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <ol>
+                            <li><a href="#participantmain">Strona Główna Panelu Kursanta</a></li>
+                            <li><a href="#participantpd">Panel Kursanta: Zarządzanie danymi osobowymi</a></li>
+                            <li><a href="#participantcr">Panel Kursanta: Rejestracja na kurs</a></li>
+                            <li><a href="#participantcatt">Panel Kursanta: Uczęszczane kursy</a></li>
+                            <li><a href="#participantlect">Panel Kursanta: Ustalone wykłady</a></li>
+                            <li><a href="#participantdl">Panel Kursanta: Ustalone jazdy</a></li>
+                            <li><a href="#participantie">Panel Kursanta: Ustalone egzaminy wewnętrzne</a></li>
+                        </ol>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantmain"></a>
+                            <h3 class="mb-0">Strona Główna Panelu Kursanta</h3>
+                            <p>Gdy zalogujemy się na konto Kursanta i klikniemy w przycisk "Panel Kursanta" na Stronie Głównej Systemu 
+                                zostaniemy przeniesieni na Stronę Główną Panelu Kursanta. Jeśli wchodzimy w Panel Kursanta pierwszy raz po rejestracji
+                                otrzymamy komunikat mówiący o tym, by uzupełnić swoje dane osobowe. Dodatkowo wszystkie opcje do czasu uzupełnienia danych będą
+                                niedostępne. Uzupełnienie danych jest konieczne:</p>
+                            <img src="img/participant1a.png" alt="Strona główna Panelu Kursanta - po rejestracji" width="100%">
+                            <br/><br/>
+                            <p>Klikamy więc w "<u>LINK</u>" przy komunikacie, by uzupełnić swoje dane osobowe. Zostaniemy przeniesieni na podstronę z następującym formularzem:</p>
+                            <img src="img/participant2.png" alt="Panel Kursanta - uzupełnianie danych osobowych" width="100%">
+                            <br/><br/>
+                            <p>W polu "Imię" wpisujemy imię kursanta, podobnie w polu "Nazwisko" wpisujemy jego nazwisko.<br/>
+                                W polu "PESEL", jak sama nazwa wskazuje wpisujemy PESEL kursanta.<br/>
+                                W polu "Telefon" należy wpisać numer telefonu do kursata.<br/>
+                                Natomiast w polu "Numer PKK" należy wpisać numer Profilu Kandydata na Kierowcę (PKK) nadany w Urzędzie.<br/>
+                                Po uzupełnieniu formularza wystarczy kliknąć "Zatwierdź".
+                            </p>
+                            <p>
+                                 Po kliknięciu "Zatwierdź" zostaniemy przekierowani na Stonę Główną Panelu Kursanta, w której będą już dostępne wszystkie opcje.
+                                 Od teraz za każdym razem, gdy będziemy logować się na dane konto Kursanta z uzupełnionymi danymi osobowymi i wejdziemy w Panel Kursanta,
+                                 pojawi się następująca Strona Główna tego Panelu:
+                            </p>
+                            <img src="img/participant1b.png" alt="Strona główna Panelu Kursanta - ogólna" width="100%">
+                            <br/><br/>
+                            <p>Widzimy sześć opcji, które posiada Kursant:
+                                <ul>
+                                    <li><b>Dane osobowe</b> - Zarządzanie swoimi danymi osobowymi</li>
+                                    <li><b>Rejestracja na kurs</b> - Możliwość zarejestrowania się na kurs na daną kategorię</li>
+                                    <li><b>Uczęszczane kursy</b> - Podgląd informacji dotyczących kursów, na które zapisany jest Kursant</li>
+                                    <li><b>Wykłady</b> - Podgląd informacji dotyczących ustalonych wykładów dla kursanta</li>
+                                    <li><b>Jazdy</b> - Podgląd informacji dotyczących ustalonych jazd dla kursanta</li>
+                                    <li><b>Egzaminy wewnętrzne</b> - Podgląd informacji dotyczących ustalonych egzaminów wewnętrznych dla kursanta</li>
+                                </ul>
+                            </p>
+                            <p>W dalszej części tego rozdziału opisane zostaną poszczególne funkcjonalności.</p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantpd"></a>
+                            <h3 class="mb-0">Panel Kursanta: Zarządzanie danymi osobowymi</h3>
+                            <p>Kliknięcie przycisku "Dane osobowe" na Stronie Głównej Panelu Kursanta przekieruje nas na podstronę Zarządzania Danymi Osobowymi:</p>
+                            <img src="img/participant3.png" alt="Panel Kursanta - Zarządzanie Danymi Osobowymi (Main)" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Kursant ma możliwość podglądu swoich danych osobowych, a także aktualizacji.</p>
+                            <p>Jeśli potrzebujemy zmiany danych osobowych klikamy "Zaktualizuj dane". Zostaniemy przeniesieni na podstronę 
+                                z odpowiednim formularzem, który będzie automatycznie uzupełniony dotychczasowymi danymi:
+                            </p>
+                            <img src="img/participant4.png" alt="Panel Kursanta - Zarządzanie Danymi Osobowymi (Aktualizacja danych)" width="100%">
+                            <br/><br/>
+                            <p>Teraz wystarczy zmienić dane, które nas interesują i zatwierdzić przyciskiem "Zatwierdź dane"</p>
+                            <p>Po kliknięciu tego przycisku zostaniemy z powrotem przeniesieni do Panelu Zarządzania Danymi Osobowymi,
+                                gdzie w podglądzie danych osobowych będą widoczne dokonane zmiany.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantcr"></a>
+                            <h3 class="mb-0">Panel Kursanta: Rejestracja na kurs</h3>
+                            <p>Jeżeli Kursant chce zarejestrować się na dany kurs danej kategorii powinien w Panelu Kursanta kliknąć przycisk "Rejestracja na kurs". 
+                                Spowoduje to przeniesienie na podstronę z formularzem rejestracji na kurs:</p>
+                            <img src="img/participant5.png" alt="Panel Kursanta - Rejestracja na kurs" width="100%">
+                            <br/><br/>
+                            <p>W powyższym formularzu należy wybrać interesujący nas kurs z listy rozwijanej i kliknąć przycisk "Zarejestruj się".
+                            </p>
+                            <p>Po kliknięciu tego przycisku dostaniemy stosowną informację dotyczącą potwierdzenia rejestracji na kurs.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantcatt"></a>
+                            <h3 class="mb-0">Panel Kursanta: Uczęszczane kursy</h3>
+                            <p>Jeżeli Kursant chce sprawdzić, na jakie kursy jest zapisany oraz uzyskać informacje na temat tego, czy dany kurs jest opłacony
+                                 i czy kurs jest w trakcie trwania (czy jednak jest zakończony) powinien w Panelu Kursanta kliknąć przycisk "Uczęszczane kursy". 
+                                Spowoduje to przeniesienie na podstronę z informacjami dotyczącymi kursów, na które dany Kursant uczęszcza (lub uczęszczał):</p>
+                            <img src="img/participant6.png" alt="Panel Kursanta - Uczęszczane kursy" width="100%">
+                            <br/><br/>
+                            <p>Dodatkowo na tej podstronie Kursant ma możliwość dokonania zapłaty za dany kurs. Wystarczy kliknąć przycisk "Pay course". 
+                                Spowoduje to odznaczenie w polu "paid" danego kursu w bazie danych wartości "true". Po dokonanej płatności (kliknięciu przycisku)
+                                pozostaniemy na tej stronie, lecz zmieni się stan płatności oraz przycisk zostanie zdezaktywowany.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantlect"></a>
+                            <h3 class="mb-0">Panel Kursanta: Ustalone wykłady</h3>
+                            <p>Jeżeli Kursant chce sprawdzić informacje na temat ustalonych dla niego wykładów przez Instruktorów powinien w Panelu Kursanta kliknąć przycisk "Wykłady". 
+                                Spowoduje to przeniesienie na podstronę z informacjami dotyczącymi wykładów, które zostały ustalone dla danego Kursanta:</p>
+                            <img src="img/participant7.png" alt="Panel Kursanta - Ustalone wykłady" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Kursant może sprawdzić termin, temat i ilość godzin danego wykładu. Widać także stan zaliczenia wykładu.</p>
+                            <p>Kursant w 'alertach' w widocznym miejscu otrzymuje informacje o tym, że jakieś wykłady są niezaliczone (czerwony alert),
+                                o liczbie nadchodzących wykładów (niebieski alert) oraz o liczbie odbytych godzin wykładów (zielony alert).
+                            </p>
+                            <p>Pomaga to Kursantowi kontrolować sytuację związaną z uczęszczaniem na wykłady. Wie ile godzin wykładów już odbył. Wszystko ma wypisane
+                                "czarno na białym" na liście ustalonych wykładów.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantdl"></a>
+                            <h3 class="mb-0">Panel Kursanta: Ustalone jazdy</h3>
+                            <p>Jeżeli Kursant chce sprawdzić informacje na temat ustalonych dla niego jazd przez Instruktorów powinien w Panelu Kursanta kliknąć przycisk "Jazdy". 
+                                Spowoduje to przeniesienie na podstronę z informacjami dotyczącymi jazd, które zostały ustalone dla danego Kursanta:</p>
+                            <img src="img/participant8.png" alt="Panel Kursanta - Ustalone jazdy" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Kursant może sprawdzić termin, ilość godzin danej jazdy. Może sprawdzić, jakiej kategorii dotyczy dana jazda.
+                                Podobnie widzi, jakim dokładnie samochodem będzie jeździł podczas danej jazdy. Widać także stan zaliczenia jazdy.</p>
+                            <p>Podobnie jak w "Uczęszczanych wykładach" Kursant w 'alertach' w widocznym miejscu otrzymuje informacje o tym, że jakieś jazdy są niezaliczone (czerwony alert),
+                                o liczbie nadchodzących jazd (niebieski alert) oraz o liczbie odbytych godzin jazd (zielony alert).
+                            </p>
+                            <p>Pomaga to Kursantowi kontrolować sytuację związaną z uczęszczaniem na jazdy. Wie ile godzin jazd już odbył. Wszystko ma opisane
+                                "czarno na białym" na liście ustalonych jazd.
+                            </p>
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="participantie"></a>
+                            <h3 class="mb-0">Panel Kursanta: Ustalone egzaminy wewnętrzne</h3>
+                            <p>Jeżeli Kursant chce sprawdzić informacje na temat ustalonych dla niego egzaminów wewnętrznych powinien w Panelu Kursanta kliknąć przycisk "Egzaminy wewnętrzne". 
+                                Spowoduje to przeniesienie na podstronę z informacjami dotyczącymi egzaminów wewnętrznych, które zostały ustalone dla danego Kursanta:</p>
+                            <img src="img/participant9.png" alt="Panel Kursanta - Ustalone egzaminy wewnętrzne" width="100%">
+                            <br/><br/>
+                            <p>Widzimy, że Kursant może sprawdzić termi danego egzaminu wewnętrznego. Może sprawdzić, jakiej kategorii dotyczy egzamin.
+                                 Widać także stan zaliczenia egzaminu.</p>
+                            <p>Kursant w 'alertach' w widocznym miejscu otrzymuje informacje o tym, że jakiś egzamin jest niezaliczony (czerwony alert),
+                                oraz o tym, że ma ustalony nadchodzący egzamin wewnętrzny (zielony alert).
+                            </p>
+                            <p>Pomaga to Kursantowi kontrolować sytuację związaną z egzaminami wewnętrznymi. Dostaje stosowną informację, gdy egzamin
+                                jest niezaliczony, podobnie jak dostaje informację o nadchodzących egzaminach.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Opinion Panel-->
+            <section class="resume-section" id="opinion">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Dodawanie opinii dotyczących OSK</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <p>Aby dodać opinię dotyczącą Ośrodka Szkolenia Kierowców należy być zalogowanym na swoje konto (Kursanta, Instruktora lub Administratora) 
+                                i na Stronie Głównej Systemu przejść do zakładki "Opinie". Ukaże się następująca podstrona:
+                            </p>
+                            <img src="img/opinion1.png" alt="Opinie dotyczące OSK" width="100%">
+                            <br/><br/>
+                            <p>Następnie (jeśli użytkownik jest zalogowany) wystarczy w polu "Twoja opinia" wpisać swoją opinię i kliknąć przycisk "Dodaj opinie". Po kliknięciu 
+                            opinia pojawi się obok, po prawej stronie.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <hr class="m-0" />
+            <!-- Non-login function-->
+            <section class="resume-section" id="non_login">
+                <div class="resume-section-content">
+                    <h2 class="mb-5">Funkcjonalności dostępne bez logowania</h2>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <ol>
+                            <li><a href="#instructorlist">Podgląd listy instruktorów</a></li>
+                            <li><a href="#courselist">Podgląd listy kursów</a></li>
+                            <li><a href="#vehiclelist">Podgląd listy pojazdów</a></li>
+                            <li><a href="#opinionlist">Podgląd opinii o Ośrodku Szkolenia Kierowców</a></li>
+                        </ol>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="instructorlist"></a>
+                            <h4 class="mb-0">Podgląd listy instruktorów</h4>
+                            <p>Aby sprawdzić listę instruktorów pracujących w Ośrodku Szkolenia Kierowców NIE TRZEBA być zalogowanym na swoje konto.
+                                Wystarczy na Stronie Głównej Systemu przejść do zakładki "Instruktorzy". Ukaże się następująca podstrona:
+                            </p>
+                            <img src="img/instructorlist1.png" alt="Lista instruktorów w OSK" width="100%">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="courselist"></a>
+                            <h4 class="mb-0">Podgląd listy kursów</h4>
+                            <p>Aby sprawdzić listę kursów prowadzonych w Ośrodku Szkolenia Kierowców NIE TRZEBA być zalogowanym na swoje konto.
+                                Wystarczy na Stronie Głównej Systemu przejść do zakładki "Kursy". Ukaże się następująca podstrona:
+                            </p>
+                            <img src="img/courselist1.png" alt="Lista kursów w OSK" width="100%">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="vehiclelist"></a>
+                            <h4 class="mb-0">Podgląd listy pojazdów</h4>
+                            <p>Aby sprawdzić listę pojazdów dostępnych w Ośrodku Szkolenia Kierowców NIE TRZEBA być zalogowanym na swoje konto.
+                                Wystarczy na Stronie Głównej Systemu przejść do zakładki "Pojazdy". Ukaże się następująca podstrona:
+                            </p>
+                            <img src="img/vehiclelist1.png" alt="Lista pojazdów w OSK" width="100%">
+                        </div>
+                    </div>
+                    <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                        <div class="flex-grow-1">
+                            <a id="opinionlist"></a>
+                            <h4 class="mb-0">Podgląd opinii o Ośrodku Szkolenia Kierowców</h4>
+                            <p>Aby sprawdzić opinie dotyczące Ośrodka Szkolenia Kierowców NIE TRZEBA być zalogowanym na swoje konto.
+                                Wystarczy na Stronie Głównej Systemu przejść do zakładki "Opinie".
+                            </p>
+                            <p>Jednak, aby dodać opinię należy się zalogować na swoje konto (sytuacja opisana wcześniej).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Third party plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>

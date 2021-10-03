@@ -1,0 +1,18 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/participants" class="btn btn-info">Powrót do głównego panelu kursanta</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL KURSANTA</b></h1>
+        <h5><b>Rejestracja na kurs</b></h5>
+    </div>
+    <div class="row my-4 mx-auto col-5 text-center">
+        <form action="/participants/course/register" method="post">
+            <select name="kurs" class="form-select mb-3">
+                {{#each courses}}<option value="{{this.oznaczenie}}"> {{this.oznaczenie}} / {{this.kategoria}}</option>{{/each}}
+            </select>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+        </form>
+    </div>
+</div>

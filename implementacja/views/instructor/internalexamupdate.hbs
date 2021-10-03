@@ -1,0 +1,23 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors/internalexam" class="btn btn-info">Powrót do panelu zarządzania egzaminami wewnętrznymi</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Aktualizacja terminu ustalonego egzaminu wewnętrznego</b></h5>
+    </div>
+     <div class="row my-4 mx-auto col-5 text-center">
+        <div class="mb-3">
+            <h4>Kursant: {{item.kursant_imie}} {{item.kursant_nazwisko}} ({{item.kursant_login}})</h4>
+            <h5>Kurs: {{item.kurs_info}}</h5>
+        </div>
+        <form action="/instructors/internalexam/update/{{id}}" method="post">
+            <div class="mb-3">
+                <label for="data" class="form-label">Termin:</label>
+                <input type="datetime-local" class="form-control" id="data" name="data" value="{{item.data}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Zaktualizuj dane</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/participants" class="btn btn-info">Powrót do głównego panelu kursanta</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <h1><b>PANEL KURSANTA</b></h1>
+        <h5><b>Ustalone wykłady</b></h5>
+    </div>
+    <div class="row my-4 mx-auto text-center col-8">
+        {{#if check}}<div class="alert alert-danger" role="alert">Masz niezaliczone {{nzal}} godzin(y) wykładów!<br />Powodem mogła być Twoja nieobecność
+            lub Twój instruktor nie odznaczył Twojej obecności. Skontaktuj się z nim!</div>{{/if}}
+        <div class="alert alert-primary" role="alert">Masz ustalone {{nadch}} godzin(y) nadchodzących wykładów! Sprawdź terminy.</div>
+        <div class="alert alert-success" role="alert">Odbyłeś {{zal}}/30 godzin(y) wykładów!</div>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Instruktor</th>
+                    <th scope="col">Temat</th>
+                    <th scope="col">Termin</th>
+                    <th scope="col">Ilość godzin</th>
+                    <th scope="col">Stan</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{this.instruktor_imie}} {{this.instruktor_nazwisko}}</td>
+                    <td>{{this.temat}}</td>
+                    <td>{{this.data}}</td>
+                    <td>{{this.iloscgodzin}}</td>
+                    <td>{{#if this.completed}}
+                            {{#if attend}}<font color="green">Zaliczony</font>
+                            {{else}}<font color="red">Niezaliczony</font>
+                            {{/if}}
+                        {{else}}
+                            <font color="navy">Nadchodzący</font>
+                        {{/if}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

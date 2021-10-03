@@ -1,0 +1,31 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors/drivinglesson" class="btn btn-info">Powrót do panelu zarządzania jazdami</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Aktualizacja danych ustalonej jazdy</b></h5>
+    </div>
+     <div class="row my-4 mx-auto col-5 text-center">
+        <div class="mb-3">
+            <h4>Kursant: {{item.kursant_imie}} {{item.kursant_nazwisko}} ({{item.kursant_login}})</h4>
+            <h5>Kurs: {{item.kurs_info}}</h5>
+        </div>
+        <form action="/instructors/drivinglesson/update/{{id}}" method="post">
+            <label for="pojazd" class="form-label">Pojazd:</label>
+            <select name="pojazd" class="form-select mb-3">
+                {{#each vehicles}}<option value="{{this.id}}"> {{this.nazwa}}/{{this.typ}}/{{this.nrrejestracyjny}}</option>{{/each}}
+            </select>
+            <div class="mb-3">
+                <label for="data" class="form-label">Termin:</label>
+                <input type="datetime-local" class="form-control" id="data" name="data" value="{{item.data}}">
+            </div>
+            <div class="mb-3">
+                <label for="iloscgodzin" class="form-label">Ilość godzin:</label>
+                <input type="number" class="form-control" id="iloscgodzin" name="iloscgodzin" value="{{item.iloscgodzin}}">
+            </div>
+            <button type="submit" class="btn btn-primary">Zaktualizuj dane</button>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors/drivinglesson" class="btn btn-info">Powrót do panelu zarządzania jazdami</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Ustalanie jazdy</b></h5>
+    </div>
+     <div class="row my-4 mx-auto col-5 text-center">
+        <form action="/instructors/drivinglesson/add" method="post">
+            <label for="kursant" class="form-label">Kursant:</label>
+            <select name="kursant" class="form-select mb-3">
+                {{#each participants}}<option value="{{this.user}}"> {{this.imie}} {{this.nazwisko}}</option>{{/each}}
+            </select>
+             <label for="kurs" class="form-label">Kurs:</label>
+            <select name="kurs" class="form-select mb-3">
+                {{#each courses}}<option value="{{this.id}}"> {{this.oznaczenie}}/{{this.kategoria}}</option>{{/each}}
+            </select>
+            <label for="pojazd" class="form-label">Pojazd:</label>
+            <select name="pojazd" class="form-select mb-3">
+                {{#each vehicles}}<option value="{{this.id}}"> {{this.nazwa}}/{{this.typ}}/{{this.nrrejestracyjny}}</option>{{/each}}
+            </select>
+            <div class="mb-3">
+                <label for="data" class="form-label">Termin:</label>
+                <input type="datetime-local" class="form-control" id="data" name="data">
+            </div>
+            <div class="mb-3">
+                <label for="iloscgodzin" class="form-label">Ilość godzin:</label>
+                <input type="number" class="form-control" id="iloscgodzin" name="iloscgodzin">
+            </div>
+            <button type="submit" class="btn btn-primary">Zatwierdź</button>
+        </form>
+    </div>
+</div>

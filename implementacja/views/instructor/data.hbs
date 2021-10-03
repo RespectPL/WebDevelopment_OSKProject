@@ -1,0 +1,27 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors" class="btn btn-info">Powrót do głównego panelu instruktora</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Twoje dane osobowe</b></h5>
+    </div>
+    <div class="row my-4 mx-auto text-center col-5">
+        <table class="table">
+            <tbody>
+               <tr>
+                   <td class="table-primary">Imię i nazwisko:</td>
+                   <td>{{item.imie}} {{item.nazwisko}}</td>
+               </tr>
+               <tr>
+                   <td class="table-primary">Telefon:</td>
+                   <td>{{item.telefon}}</td>
+               </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="row my-4 mx-auto text-center col-5">
+        <a href="/instructors/data/update/{{item.id}}" class="btn btn-primary">Zaktualizuj dane</a>
+    </div>
+</div>

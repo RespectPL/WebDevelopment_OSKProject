@@ -1,0 +1,40 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/instructors" class="btn btn-info">Powrót do głównego panelu instruktora</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        <h5><b>Kursanci zarejestrowani na kursy</b></h5>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <table class="table">
+            <thead class="table-primary">
+                <tr>
+                    <th scope="col">Login kursanta</th>
+                    <th scope="col">Imię i nazwisko kursanta</th>
+                    <th scope="col">Kategoria</th>
+                    <th scope="col">Stan płatności</th>
+                    <th scope="col">Stan kursu</th>
+                    <th scope="col">Zakończ kurs</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each items}}
+                <tr>
+                    <td>{{this.user}}</td>
+                    <td>{{this.imie}} {{this.nazwisko}}</td>
+                    <td>{{this.kurs}}</td>
+                    <td>{{#if this.paid}}<font color="green">Zapłacone</font>{{else}}<font color="red">Niezapłacone</font>{{/if}}</td>
+                    <td>{{#if this.completed}}<font color="green">Zakończony</font>{{else}}W trakcie{{/if}}</td>
+                    <td>{{#if this.completed}}<button class="btn btn-danger btn-sm disabled">End course</button>
+                        {{else}}<form action="/instructors/course/end" method="post" style="display: inline;">
+                        <button class="btn btn-danger btn-sm" type="submit" name="id" id="{{this.id}}" value="{{this.id}}">End course</button>
+                    </form>
+                        {{/if}}</td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</div>

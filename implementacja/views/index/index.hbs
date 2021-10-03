@@ -1,0 +1,30 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <h1><b></b></h1>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <div class="col-9">
+            <h3>Witamy w Systemie Obsługi Ośrodka Szkolenia Kierowców!</h3>
+            Zaloguj się lub zarejestruj używając przycisków widocznych po prawej stronie.<br /><br />
+            <img src="images/swift1.jpeg" alt="Suzuki Swift - pojazd L">
+        </div>
+        <div class="col-3">
+            {{#if login }}
+                <p>Jesteś zalogowany jako <b>{{ login }}</b></p>
+                {{#if instruktor }}
+                    <a href="/instructors/" class="btn btn-info">Panel instruktora</a>
+                {{else}}
+                    {{#if admin }}
+                        <a href="/admin/" class="btn btn-info">Panel Admina</a>
+                    {{else}}
+                        <a href="/participants/" class="btn btn-info">Panel kursanta</a>
+                    {{/if}}
+                {{/if}}
+                <a href="/users/logout" class="btn btn-dark">Wyloguj się</a>
+            {{else}}
+                <a href="/users/login" class="btn btn-primary">Zaloguj się</a>
+                <a href="/users/register" class="btn btn-secondary">Zarejestruj się</a>
+            {{/if}}
+        </div>
+    </div>
+</div>

@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+        <p align="left"><a href="/vehicles/admin" class="btn btn-info">Powrót do panelu zarządzania pojazdami</a></p>
+    </div>
+    <div class="row my-4 mx-auto text-center">
+        <h1><b>PANEL ADMINA</b></h1>
+        <h3><b>Zarządzanie pojazdami</b></h3>
+        <h5><b>Dodawanie pojazdu</b></h5>
+    </div>
+    <div class="row my-4 mx-auto col-5 text-center">
+        <form action="/vehicles/admin/add" method="post">
+            <div class="mb-3">
+                <label for="nazwa" class="form-label">Nazwa:</label>
+                <input type="text" class="form-control" id="nazwa" name="nazwa">
+            </div>
+            <div class="mb-3">
+                <label for="typ" class="form-label">Typ:</label>
+                <input type="text" class="form-control" id="typ" name="typ">
+            </div>
+            <div class="mb-3">
+                <label for="nrrejestracyjny" class="form-label">Numer rejestracyjny:</label>
+                <input type="text" class="form-control" id="nrrejestracyjny" name="nrrejestracyjny">
+            </div>
+            <button type="submit" class="btn btn-primary">Dodaj</button>
+        </form>
+    </div>
+</div>

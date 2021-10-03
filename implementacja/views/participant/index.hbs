@@ -1,0 +1,56 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL KURSANTA</b></h1>
+        {{#if check_data}}
+        {{else}}
+            <div class="alert alert-danger" role="alert">
+                Uzupełnij swoje dane! <a href="/participants/add" >LINK</a>
+            </div>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+            <a href="/participants/data" class="btn btn-warning">Dane osobowe</a>
+            {{else}}
+            <a href="/participants/data" class="btn btn-warning disabled">Dane osobowe</a>
+            {{/if}}    
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+            {{#if check_data}}
+            <a href="/participants/course/register" class="btn btn-warning">Rejestracja na kurs</a>
+            {{else}}
+            <a href="/participants/course/register" class="btn btn-warning disabled">Rejestracja na kurs</a>
+            {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+            {{#if check_data}}
+            <a href="/participants/course/check" class="btn btn-warning">Uczęszczane kursy</a>
+            {{else}}
+            <a href="/participants/course/check" class="btn btn-warning disabled">Uczęszczane kursy</a>
+            {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+            {{#if check_data}}
+            <a href="/participants/lecture" class="btn btn-warning">Wykłady</a>
+            {{else}}
+            <a href="/participants/lecture" class="btn btn-warning disabled">Wykłady</a>
+            {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+            {{#if check_data}}
+            <a href="/participants/drivinglesson" class="btn btn-warning">Jazdy</a>
+            {{else}}
+            <a href="/participants/drivinglesson" class="btn btn-warning disabled">Jazdy</a>
+            {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+            {{#if check_data}}
+            <a href="/participants/internalexam" class="btn btn-warning">Egzaminy wewnętrzne</a>
+            {{else}}
+            <a href="/participants/internalexam" class="btn btn-warning disabled">Egzaminy wewnętrzne</a>
+            {{/if}}
+    </div>
+</div>

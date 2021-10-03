@@ -1,0 +1,32 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <h1><b>REJESTRACJA UŻYTKOWNIKA</b></h1>
+    </div>
+    <div class="row my-4 mx-auto col-5">
+        <form action="../users/register" method="post">
+            <div class="mb-3">
+                <label for="login" class="form-label">Login:</label>
+                <input type="text" class="form-control" id="login" name="login">
+            </div>
+            <div class="mb-3">
+                <label for="haslo" class="form-label">Hasło:</label>
+                <input type="password" class="form-control" id="haslo" name="haslo" aria-describedby="passwordHelpInline">
+                Hasło powinno mieć długość minimum 8 znaków!
+            </div>
+             <div class="mb-3">
+                <label for="email" class="form-label">E-mail:</label>
+                <input type="email" class="form-control" id="email" name="email" aria-describedby="emailHelp">
+            </div>
+            Typ konta:
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rola" id="kursant" value="kursant" checked>
+                <label class="form-check-label" for="kursant">Kursant</label>
+            </div>
+            <div class="form-check mb-3">
+                <input class="form-check-input" type="radio" name="rola" id="instruktor" value="instruktor">
+                <label class="form-check-label" for="instruktor">Instruktor</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Zarejestruj się</button>
+        </form>
+    </div>
+</div>

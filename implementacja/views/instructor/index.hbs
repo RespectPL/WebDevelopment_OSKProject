@@ -1,0 +1,49 @@
+<div class="container-fluid">
+    <div class="row my-4 mx-auto text-center">
+        <p align="right">Jesteś zalogowany jako <b>{{ login }} <a href="/users/logout" class="btn btn-dark">Wyloguj się</a></b></p>
+    </div>
+    <div class="row my-4 mx-auto text-center col-10">
+        <h1><b>PANEL INSTRUKTORA</b></h1>
+        {{#if check_data}}
+        {{else}}
+            <div class="alert alert-danger" role="alert">
+                Uzupełnij swoje dane! <a href="/instructors/add" >LINK</a>
+            </div>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+        <a href="/instructors/data" class="btn btn-warning">Dane osobowe</a>
+        {{else}}
+        <a href="/instructors/data" class="btn btn-warning disabled">Dane osobowe</a>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+        <a href="/instructors/course/check" class="btn btn-warning">Kursanci zarejestrowani na kursy</a>
+        {{else}}
+        <a href="/instructors/course/check" class="btn btn-warning disabled">Kursanci zarejestrowani na kursy</a>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+        <a href="/instructors/lecture" class="btn btn-warning">Wykłady</a>
+        {{else}}
+        <a href="/instructors/lecture" class="btn btn-warning disabled">Wykłady</a>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+        <a href="/instructors/drivinglesson" class="btn btn-warning">Jazdy</a>
+        {{else}}
+        <a href="/instructors/drivinglesson" class="btn btn-warning disabled">Jazdy</a>
+        {{/if}}
+    </div>
+    <div class="row my-4 mx-auto text-center col-4">
+        {{#if check_data}}
+        <a href="/instructors/internalexam" class="btn btn-warning">Egzaminy wewnętrzne</a>
+        {{else}}
+        <a href="/instructors/internalexam" class="btn btn-warning disabled">Egzaminy wewnętrzne</a>
+        {{/if}}
+    </div>
+</div>
